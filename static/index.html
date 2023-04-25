@@ -4,24 +4,70 @@
 <head>
   <meta charset="utf-8">
   <title>ShakeSearch</title>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
-  <meta name="theme-color" content="#fafafa">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>  
 </head>
 
-<body>
-    <p>
-        <form id="form">
-            <label for="query">Query</label>
-            <input type="text" id="query" name="query">
-            <button type="submit">Search</button>
-        </form>
-    </p>
-    <p>
-        <table id="table">
-          <tbody id="table-body"></tbody>
-        </table>
-    </p>
+<body class="">
+  <div class="container">
+    <header class="row center-align">
+      <h1>Welcome to ShakeSearch</h1>
+      <h5>Search the complete works of William Shakespeare</h5>
+    </header>
+
+    <form id="form">
+      <div class="row">
+        <div class="input-field col s6" style="display: flex;">
+          <input placeholder="enter your search term" type="text" id="query" name="query" class="validate">
+          <button class="btn waves-effect waves-light deep-orange lighten-1" type="submit" name="action" style="margin-left: 25px;">Submit
+            <i class="material-icons right">send</i>
+          </button>
+        </div>
+      </div>
+    </form>
+    <div class="row">
+      <div class="col s12">
+        <div id="card-container" class="row">
+        </div>
+      </div>
+    </div>
+  </div>
+
   <script src="app.js"></script>
+  <script>
+  // displayResults takes an array of results and displays them as cards
+function displayResults(results) {
+  // Get a reference to the card container element and cleat any existing cards
+  const cardContainer = document.getElementById("card-container");
+  cardContainer.innerHTML = "";
+
+  // Loop through each result and create a new card for it
+  for (let i = 0; i < results.length; i++) {
+    const card = document.createElement("div");
+    card.className = "col s12 m6 l4";
+    const content = `
+    <div class="card">
+      <div class="card-content">
+        <span class="card-title" style="font-style: italic;">Title ${results[i].title}</span>
+        <p>${results[i].quote}</p>
+      </div>
+      <div class="card-action">
+        <span>${results[i].character} (${results[i].actSceneLine})</span>
+      </div>
+    </div>
+    `;
+    
+    // Set the innerHTML of the card element to the content defined above and append to the card container
+    card.innerHTML = content;
+    cardContainer.appendChild(card);
+  }
+}
+
+  </script>
 </body>
 
 </html>

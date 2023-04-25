@@ -17,6 +17,12 @@ html {
   line-height: 1.4;
 }
 
+highlight { 
+  background: lightyellow;
+  font-weight: bold; 
+  font-style: italic;
+}
+
 /*
    * Remove text-shadow in selection highlight:
    * https://twitter.com/miketaylr/status/12228805301
